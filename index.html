@@ -2,42 +2,45 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Favorite TV Shows</title>
+    <title>Trivia</title>
   </head>
   <body>
     <script type="text/javascript">
-      // Creates popup saying you have 10 guesses //
-      prompt("You have 10 guesses. Guess between 'a' to 'z'.")
-
-      // Creating an empty array for alphabet and variables //
-      var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l',
-    'm','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    // Creating an empty array for alphabet and variables //
+      var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
       var win = 0;
       var loss = 0;
-      var guesses = 10;
+      var guesses = 0;
 
       // math random //
       var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
 
       console.log(computerChoice);
 
-      // when user presses key //
-      document.onkeypress = function(event){
-        var userGuess = event.key;
-      
-      if(userGuess === computerChoice){
-        win++;
-      } else {
-        guesses--;
-      } if (guesses === 0){
-        losses++;
-      }
-      document.getElementById('win').innerHTML = "Wins: " + win;
-      document.getElementById('loss').innerHTML = "loss: " + loss;
-      document.getElementById('guesses').innerHTML = "guesses: " + guesses;
+      while (Attempts != computerChoice) {
+        var Attempts = prompt("You have 3 guesses. Guess between 'a' to 'z'.")
+
+        if (Attempts == computerChoice){
+          document.write("You got it buddy!");
+          document.write("<p> The letter was " + computerChoice + "</p>");
+          document.write("<p> Amount of guesses = " + guesses + "</p>");
+          break;
+        } 
+
+        if (Attempts != computerChoice){
+          guesses += 1;
+        }
+
+        if (guesses === 3){
+          document.write("YOU LOST!")
+          break;
+        }
+
+
       }
 
-      
+     
+
     </script>
   </body>
 </html>
