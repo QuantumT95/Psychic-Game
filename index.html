@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Favorite TV Shows</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // Creates popup saying you have 10 guesses //
+      prompt("You have 10 guesses. Guess between 'a' to 'z'.")
+
+      // Creating an empty array for alphabet and variables //
+      var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l',
+    'm','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+      var win = 0;
+      var loss = 0;
+      var guesses = 10;
+
+      // math random //
+      var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+      console.log(computerChoice);
+
+      // when user presses key //
+      document.onkeypress = function(event){
+        var userGuess = event.key;
+      
+      if(userGuess === computerChoice){
+        win++;
+      } else {
+        guesses--;
+      } if (guesses === 0){
+        losses++;
+      }
+      document.getElementById('win').innerHTML = "Wins: " + win;
+      document.getElementById('loss').innerHTML = "loss: " + loss;
+      document.getElementById('guesses').innerHTML = "guesses: " + guesses;
+      }
+
+      
+    </script>
+  </body>
+</html>
