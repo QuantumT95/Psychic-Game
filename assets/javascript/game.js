@@ -10,12 +10,16 @@
       var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
       console.log(computerChoice);
 
+      var updateGuessesSoFar = function() {
+      // Grabs, declares, and updates the player's past guesses
+      document.querySelector('#let').innerHTML = "Your Guesses so far: " + guessedLetters.join(', ');
+      };
+
 
       // reset //
       var reset = function() {
         guesses = 10;
         guessedLetters = [];
-        changeLettertoGuess();
       }
 
       // change computer Choice when reset happens //
@@ -30,9 +34,9 @@
         if (Attempts == computerChoice){
           document.write("You got it buddy!");
           document.write("<p> The letter was " + computerChoice + "</p>");
-          document.write("<p> Amount of guesses = " + guesses + "</p>");
+          document.write("<p> Amount of guesses left = " + guesses + "</p>");
           win += 1;
-          reset();
+          reset;
         } 
 
         if (Attempts != computerChoice){
@@ -42,6 +46,10 @@
         if (guesses === 0){
           document.write("YOU LOST!");
           loss += 1;
-          reset(); 
+          reset; 
         }
       }
+
+      document.getElementById("win").innerHTML = "Wins: " + win;
+      document.getElementById("loss").innerHTML = "Losses: " + loss;
+      
