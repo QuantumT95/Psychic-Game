@@ -3,44 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <title>Trivia</title>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
   </head>
   <body>
-    <script type="text/javascript">
-    // Creating an empty array for alphabet and variables //
-      var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-      var win = 0;
-      var loss = 0;
-      var guesses = 0;
-
-      // math random //
-      var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
-
-      console.log(computerChoice);
-
-      while (Attempts != computerChoice) {
-        var Attempts = prompt("You have 3 guesses. Guess between 'a' to 'z'.")
-
-        if (Attempts == computerChoice){
-          document.write("You got it buddy!");
-          document.write("<p> The letter was " + computerChoice + "</p>");
-          document.write("<p> Amount of guesses = " + guesses + "</p>");
-          break;
-        } 
-
-        if (Attempts != computerChoice){
-          guesses += 1;
-        }
-
-        if (guesses === 3){
-          document.write("YOU LOST!")
-          break;
-        }
-
-
-      }
-
-     
-
-    </script>
+    <header> Guess the letter! </header>
+    <div>
+    <div id="win">Wins:</div>
+    </div>
+    <br>
+    <br>
+    <div id="loss">Losses:</div>
+    <br>
+    <br>
+    <div id="guesses">Guesses:</div>
+    <br>
+    <br>
   </body>
 </html>
