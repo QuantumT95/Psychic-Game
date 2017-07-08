@@ -1,46 +1,63 @@
-      // Creating an empty array for alphabet and variables //
-      var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-      var win = 0;
-      var loss = 0;
-      var guesses = 10;
-      var newLetter = null;
+// Creating an empty array for alphabet and variables //
+var win = 0;
+var loss = 0;
+var guesses = 10;
+var randomLetter = null;
+var letters = '';
 
-      // math random //
-      var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
-      console.log(computerChoice);
+// clear the typed letters
+function clearUserLetters() {
+  letters = '';
+  $('#letters').text('Letters: ');
+}
 
-      // loop //
+// get a random letter
+function getRandomLetter() {
+  // get random letter key from a-z
+  var randomNum = Math.floor(Math.random() * (90 - 65) + 65);
 
-      document.onkeyup = function(event) {
-        guesses -= 1;
-        var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+  // randomLetter = String.fromCharCode(randomNum).toLowerCase();
+  randomLetter = randomNum;
+}
 
-      // reset //
-      var reset = function(){
-        changeLettertoGuess();
+// get user input
+function getUserInput(e) {
+  var key = e.keyCode || e.which;
 
-      }
+  // add letter to letters string
+  letters += String.fromCharCode(key).toUpperCase();
+  $('#letters').text('Letters: ' + letters);
 
-      // change computer Choice when reset happens //
-      var changeLettertoGuess = function() {
-      alphabet[Math.floor(Math.random() * alphabet.length)];
-      }
+  guesses--;
+  
+  // if user is correct, alert win and restart
+  if ( randomLetter == key ) {
+    win++;
+    $('#win').text('Wins: ' + win);
+    // document.getElementById('win').innerText = 'Wins: ' + win;
+    alert('You got it!');
+    startGame();
+  } else {
+    // if user has no more guesses, alert loss and restart
+    if ( !guesses ) {
+      loss++;
+      $('#loss').text('Losses: ' + loss);
+      alert('You lost....');
+      startGame();
+    }
+  }
 
-      if (userGuess == computerChoice){
-        document.write("You got it buddy!");
-        document.write("<p> The letter was " + computerChoice + "</p>");
-        document.write("<p> Amount of guesses left = " + guesses + "</p>");
-        win += 1;
-        reset();
-        } 
+  $('#guesses').text('Guesses: ' + guesses);  
+}
 
-      if (guesses === 0){
-        document.write("YOU LOST!");
-        loss += 1;
-        reset();
-        }
-      }
-      // wins and losses will show on screen //
-      document.getElementById("win").innerHTML = "Wins: " + win;
-      document.getElementById("loss").innerHTML = "Losses: " + loss;
-      
+function startGame() {
+  getRandomLetter(); // get a new random letter
+  clearUserLetters(); // clear user letters
+  guesses = 10; // reset guesses
+}
+
+// document.addEventListener('keyup', getUserInput);
+// setup key input listener
+$(document).on('keyup', getUserInput);
+
+startGame(); // start game when app loads
